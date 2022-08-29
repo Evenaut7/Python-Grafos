@@ -15,7 +15,8 @@ def lee_grafo_stdin():
 		n += 1
 
 	print("Ingrese Aristas")
-	while aux != "-1":
+	aux = "0"
+	while aux != "":
 		aux = input()
 		tupla = tuple(aux.split())
 		aristas.append(tupla)
@@ -58,11 +59,48 @@ def lista_a_adyacencia(grafo):
 
 
 #Ejercicio 4
-def componentes_conexas():
-	as
+def componentes_conexas(grafo):
+
+	vertices = grafo[0]
+	aristas = grafo[1]
+
+	ady = []
+	i = 0
+	for vertice in vertices:
+		lista = []
+		lista.append(vertice)
+		for arista in aristas:
+			if arista[0] == vertice: 
+				lista.append(arista[1])
+			else:
+				if arista[1] == vertice: 
+					lista.append(arista[0])
+		ady.append(lista)
+
+	caminos = []
+	for comp in ady:
+		for	check in ady:
+			if any(x in comp for x in check):
+				caminos.append(comp + check)
+
+	compConexas = []
+
+	for x in caminos:
+		compConexas.append(list(dict.fromkeys(x)))
+
+	print(compConexas)
+
+	aux = 0
+	while aux < len(compConexas):
+		aux0 = 0
+		while aux0 < len(compConexas):
+			if(all(x in compConexas[aux] for x in compConexas[aux0])):
+				compConexas.remove(compConexas[aux0])
+
+	print(compConexas)		
+				
 
 
+grafo = (['A', 'B', 'C', 'D'], [('A', 'A'), ('B', 'A'), ('C', 'B'), ('B', 'A')])
 
-
-grafo = (['A', 'B', 'C'], [('A', 'A'), ('B', 'A'), ('C', 'B'), ('B', 'A')])
-
+componentes_conexas(grafo)
