@@ -1,4 +1,7 @@
 #Ejercicio 1
+from genericpath import exists
+
+
 def lee_grafo_stdin():
 	
 	vertices = []
@@ -65,7 +68,6 @@ def componentes_conexas(grafo):
 	aristas = grafo[1]
 
 	ady = []
-	i = 0
 	for vertice in vertices:
 		lista = []
 		lista.append(vertice)
@@ -77,30 +79,53 @@ def componentes_conexas(grafo):
 					lista.append(arista[0])
 		ady.append(lista)
 
-	caminos = []
-	for comp in ady:
-		for	check in ady:
-			if any(x in comp for x in check):
-				caminos.append(comp + check)
+	c0 = 0
+	while c0 < len(ady):
+		for comp in ady:
+			if any(x in ady[c0] for x in comp):
+				ady[c0] = ady[c0] + comp
+		c0 += 1
 
-	compConexas = []
+	c1 = 0
+	while c1 < len(ady):
+		for compe in ady:
+			if(ady[c1] != compe):
+				if any(x in ady[c1] for x in compe):
+					ady.remove(compe)
+		c1 += 1
 
-	for x in caminos:
-		compConexas.append(list(dict.fromkeys(x)))
+	compConexa = []
 
-	print(compConexas)
+	for compenente in ady:
+		compConexa.append(list(set(compenente)))
+	
+	return(compConexa)
 
-	aux = 0
-	while aux < len(compConexas):
-		aux0 = 0
-		while aux0 < len(compConexas):
-			if(all(x in compConexas[aux] for x in compConexas[aux0])):
-				compConexas.remove(compConexas[aux0])
 
-	print(compConexas)		
+#Ejercicio 5
+def es_conexo(grafo): 
+	compConexa = []
+	compConexa = componentes_conexas(grafo) 
+	return(len(compConexa) == 1)
+		 
 				
+#Presentacion
 
+grafo_de_prueba = (['A', 'B', 'C', 'D', 'E'], [('A', 'A'), ('B', 'A'), ('C', 'B'), ('B', 'A'), ('E', 'E')])
 
-grafo = (['A', 'B', 'C', 'D'], [('A', 'A'), ('B', 'A'), ('C', 'B'), ('B', 'A')])
+print("Ejercicio 1:")
+grafo = lee_grafo_stdin()
+print(grafo)
 
-componentes_conexas(grafo)
+print("\nEjercicio 2: Los grados de sus vertices es: ")
+print(cuenta_grado(grafo))
+
+print("\nEjercicio 3: su matriz de adyacencia es: ")
+lista_a_adyacencia(grafo)
+
+print("\nEjercico 4: sus componentes conexas son: ")
+print(componentes_conexas(grafo))
+
+print("\nEjercicio 5: Es conexo?: ")
+if es_conexo(grafo): print("Si") 
+else: print("No")
