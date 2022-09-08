@@ -1,7 +1,4 @@
 #Ejercicio 1
-from genericpath import exists
-
-
 def lee_grafo_stdin():
 	
 	vertices = []
