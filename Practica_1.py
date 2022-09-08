@@ -104,25 +104,3 @@ def es_conexo(grafo):
 	compConexa = []
 	compConexa = componentes_conexas(grafo) 
 	return(len(compConexa) == 1)
-		 
-				
-#Presentacion
-
-grafo_de_prueba = (['A', 'B', 'C', 'D', 'E'], [('A', 'A'), ('B', 'A'), ('C', 'B'), ('B', 'A'), ('E', 'E')])
-
-print("Ejercicio 1:")
-grafo = lee_grafo_stdin()
-print(grafo)
-
-print("\nEjercicio 2: Los grados de sus vertices es: ")
-print(cuenta_grado(grafo))
-
-print("\nEjercicio 3: su matriz de adyacencia es: ")
-lista_a_adyacencia(grafo)
-
-print("\nEjercico 4: sus componentes conexas son: ")
-print(componentes_conexas(grafo))
-
-print("\nEjercicio 5: Es conexo?: ")
-if es_conexo(grafo): print("Si") 
-else: print("No")
