@@ -21,3 +21,11 @@ print(componentes_conexas(grafo))
 print("\nEjercicio 5: Es conexo?: ")
 if es_conexo(grafo): print("Si") 
 else: print("No")
+
+print("PRACTICA 2")
+
+print("\nEjercicio 1: Posee ciclo Euleriano?")
+print(graph_has_eulerian_circuit(grafo))
+
+print("\nEjercicio 2: Cual es su ciclo Euleriano?")
+print(find_eulerian_circuit(grafo))

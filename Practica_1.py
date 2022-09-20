@@ -92,10 +92,9 @@ def componentes_conexas(grafo):
 		c1 += 1
 
 	compConexa = []
-
 	for compenente in ady:
 		compConexa.append(list(set(compenente)))
-	
+
 	return(compConexa)
 
 
@@ -104,3 +103,5 @@ def es_conexo(grafo):
 	compConexa = []
 	compConexa = componentes_conexas(grafo) 
 	return(len(compConexa) == 1)
+
+print(componentes_conexas((['A', 'B' ,'C' ,'D', 'E'], [('A', 'B'),('A', 'C'),('A', 'D'),('A', 'E'),('B', 'C'),('B', 'D'),('B', 'E'),('C', 'D'),('C', 'E'),('D', 'E')])))
