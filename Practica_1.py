@@ -71,31 +71,29 @@ def componentes_conexas(grafo):
 		for arista in aristas:
 			if arista[0] == vertice: 
 				lista.append(arista[1])
-			else:
-				if arista[1] == vertice: 
-					lista.append(arista[0])
+			elif arista[1] == vertice: 
+				lista.append(arista[0])
 		ady.append(lista)
+
+	print(ady)
 
 	c0 = 0
 	while c0 < len(ady):
-		for comp in ady:
-			if any(x in ady[c0] for x in comp):
-				ady[c0] = ady[c0] + comp
+		c1 = c0
+		while c1 < len(ady):
+			if any(x in ady[c0] for x in ady[c1]):
+				ady[c0] += ady[c1]
+				ady.remove(ady[c1])
+			c1 += 1
 		c0 += 1
-
-	c1 = 0
-	while c1 < len(ady):
-		for compe in ady:
-			if(ady[c1] != compe):
-				if any(x in ady[c1] for x in compe):
-					ady.remove(compe)
-		c1 += 1
+	
+	print(ady)
 
 	compConexa = []
 	for compenente in ady:
 		compConexa.append(list(set(compenente)))
 
-	return(compConexa)
+	return compConexa
 
 
 #Ejercicio 5
@@ -104,4 +102,4 @@ def es_conexo(grafo):
 	compConexa = componentes_conexas(grafo) 
 	return(len(compConexa) == 1)
 
-print(componentes_conexas((['A', 'B' ,'C' ,'D', 'E'], [('A', 'B'),('A', 'C'),('A', 'D'),('A', 'E'),('B', 'C'),('B', 'D'),('B', 'E'),('C', 'D'),('C', 'E'),('D', 'E')])))
+print(componentes_conexas((['a', 'b', 'c', 'd', 'e', 'f'], [('a', 'b'), ('b', 'c'), ('c', 'a'), ('d', 'e')])))

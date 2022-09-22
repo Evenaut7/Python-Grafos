@@ -1,4 +1,3 @@
-from this import d
 from Practica_1 import *
 
 #Ejercicio 1
@@ -60,7 +59,3 @@ def find_eulerian_circuit(grafo):
 grafo = (['A', 'B', 'C'], [('A', 'B'), ('B', 'C'), ('C', 'A')])
 
 grafo2 = (['A', 'B' ,'C' ,'D', 'E'], [('A', 'B'),('A', 'C'),('A', 'D'),('A', 'E'),('B', 'C'),('B', 'D'),('B', 'E'),('C', 'D'),('C', 'E'),('D', 'E')])
-
-print (graph_has_eulerian_circuit(grafo2))
-
-print (find_eulerian_circuit(grafo2))
