@@ -75,19 +75,16 @@ def componentes_conexas(grafo):
 				lista.append(arista[0])
 		ady.append(lista)
 
-	print(ady)
-
 	c0 = 0
 	while c0 < len(ady):
 		c1 = c0
-		while c1 < len(ady):
-			if any(x in ady[c0] for x in ady[c1]):
-				ady[c0] += ady[c1]
-				ady.remove(ady[c1])
-			c1 += 1
+		if len(ady[c0]) != 1:
+			while c1 < len(ady):
+				if any(x in ady[c0] for x in ady[c1]):
+					ady[c0] += ady[c1]
+					ady.remove(ady[c1])
+				c1 += 1
 		c0 += 1
-	
-	print(ady)
 
 	compConexa = []
 	for compenente in ady:
